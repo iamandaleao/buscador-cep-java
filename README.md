@@ -8,12 +8,12 @@ Sistema que consome a API do ViaCEP para buscar informações de endereço atrav
 
 ## 🚀 Funcionalidades
 
-- ✅ Consumo da API REST ViaCEP
-- ✅ Requisições HTTP com HttpClient
-- ✅ Conversão de JSON para objetos Java com Gson
-- ✅ Salvamento de dados em arquivo JSON formatado
-- ✅ Tratamento de exceções
-- ✅ Interação via linha de comando
+-  Consumo da API REST ViaCEP
+-  Requisições HTTP com HttpClient
+-  Conversão de JSON para objetos Java com Gson
+-  Salvamento de dados em arquivo JSON formatado
+-  Tratamento de exceções
+-  Interação via linha de comando
 
 ## 🛠️ Tecnologias Utilizadas
 
