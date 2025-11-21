@@ -1,63 +1,111 @@
-# 🔍 Buscador de CEP
+# Consumidor de API ViaCEP
 
-Aplicação Java desenvolvida como desafio do programa **ONE - Oracle Next Education** em parceria com a **Alura**, que realiza a consulta de endereços através da API ViaCEP.
+Aplicação Java para consulta de endereços via API REST e salvamento dos dados em JSON.
 
-## 📋 Sobre o Projeto
+## 🎯 Sobre o Projeto
 
-Este projeto consiste em uma aplicação que permite ao usuário buscar informações de endereço através do CEP, consumindo a API pública do ViaCEP. Os dados retornados são exibidos na aplicação e salvos em um arquivo JSON.
-
-Similar ao que acontece em formulários web modernos, ao digitar o CEP, o endereço é retornado automaticamente com informações como logradouro, bairro, cidade e estado.
+Sistema que consome a API do ViaCEP para buscar informações de endereço através do CEP. A aplicação faz requisições HTTP, processa a resposta JSON e salva os dados em arquivo local.
 
 ## 🚀 Funcionalidades
 
-- Consumo da API ViaCEP
-- Menu interativo para entrada do CEP
-- Exibição dos dados do endereço
-- Geração automática de arquivo JSON com as informações consultadas
+- ✅ Consumo da API REST ViaCEP
+- ✅ Requisições HTTP com HttpClient
+- ✅ Conversão de JSON para objetos Java com Gson
+- ✅ Salvamento de dados em arquivo JSON formatado
+- ✅ Tratamento de exceções
+- ✅ Interação via linha de comando
 
-## 🔧 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-- Java
-- API ViaCEP
-- Biblioteca para manipulação de JSON
+- **Java 21** (OpenJDK)
+- **Gson 2.13.2** - Manipulação de JSON
+- **HttpClient** (java.net.http) - Cliente HTTP nativo
+- **Records** - Estrutura de dados imutável
+- **ViaCEP API** - Consulta de CEPs
 
-## 📦 Exemplo de Resposta da API
+## 📁 Estrutura do Projeto
+```
+src/
+├── ConsultaCep.java         # Requisições HTTP à API
+├── Endereco.java            # Record para dados do endereço
+├── GeradorDeArquivo.java    # Gravação de arquivos JSON
+└── Principal.java           # Classe principal (main)
+```
 
-Ao consultar o CEP `01001-000`, a API retorna:
+## 💻 Como Executar
+
+**Pré-requisitos:**
+- Java 21 ou superior
+- Biblioteca Gson 2.13.2
+
+**Compilar:**
+```bash
+javac -cp "dependencias/gson-2.13.2.jar" src/*.java
+```
+
+**Executar:**
+```bash
+java -cp "src:dependencias/gson-2.13.2.jar" Principal
+```
+
+**Uso:**
+```
+Digite um número de CEP para consulta:
+01001000
+```
+
+**Saída:**
+```
+Endereco[cep=01001-000, logradouro=Praça da Sé, complemento=lado ímpar, localidade=São Paulo, uf=SP]
+```
+
+## 📊 Arquivo Gerado
+
+A aplicação cria um arquivo JSON com o nome do CEP consultado:
+
+**01001-000.json:**
 ```json
 {
   "cep": "01001-000",
   "logradouro": "Praça da Sé",
   "complemento": "lado ímpar",
-  "bairro": "Sé",
   "localidade": "São Paulo",
-  "uf": "SP",
-  "ibge": "3550308",
-  "gia": "1004",
-  "ddd": "11",
-  "siafi": "7107"
+  "uf": "SP"
 }
 ```
 
-## 💻 Como Usar
+## 🔧 Conceitos Aplicados
 
-1. Clone este repositório
-2. Execute a aplicação Java
-3. Informe o CEP desejado no menu interativo
-4. Visualize os dados do endereço
-5. O arquivo JSON será gerado automaticamente
+- **HttpClient** - Cliente HTTP nativo do Java para requisições
+- **HttpRequest** - Construção de requisições HTTP
+- **Records** - Estrutura de dados imutável (Java 14+)
+- **Gson** - Serialização e deserialização JSON
+- **FileWriter** - Escrita de arquivos
+- **Try-Catch** - Tratamento de exceções (IOException, RuntimeException)
+- **Scanner** - Leitura de entrada do usuário
 
-## 🌐 API Utilizada
+## 🔗 API Utilizada
 
-- **ViaCEP**: https://viacep.com.br/
-- **Endpoint**: `https://viacep.com.br/ws/{CEP}/json/`
+[ViaCEP](https://viacep.com.br/) - API gratuita para consulta de CEPs brasileiros
 
-## 📚 Aprendizados
+**Endpoint:** `https://viacep.com.br/ws/{cep}/json/`
 
-Este projeto foi desenvolvido como parte do programa ONE, aplicando conceitos de:
+## ⚙️ Detalhes Técnicos
+
+- **URI.create()** - Criação de URIs para requisições
+- **HttpRequest.newBuilder()** - Padrão Builder para requisições HTTP
+- **HttpResponse.BodyHandlers.ofString()** - Tratamento de resposta como String
+- **GsonBuilder().setPrettyPrinting()** - Formatação legível do JSON
+- **Record** - Classe imutável com cep, logradouro, complemento, localidade e uf
+
+## 👨‍💻 Desenvolvimento
+
+Projeto desenvolvido para praticar:
 - Consumo de APIs REST
-- Manipulação de dados JSON
-- Interação com usuário via console
-- Manipulação de arquivos em Java
+- Manipulação de JSON em Java
+- Requisições HTTP
+- Persistência de dados
 
-⭐ Projeto desenvolvido durante o programa ONE/Oracle + Alura
+---
+
+⭐ Projeto criado para estudos de integração com APIs em Java
